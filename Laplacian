@@ -1,0 +1,10 @@
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+img = cv2.imread("D:\IITH/Necun\Opencv\INPUTS\c-sc.png",0)# 0 to read the image in gray scale
+kernel = np.array([[0, 1, 0],[1, -4, 1],[0, 1, 0]])
+LaplacianImage = cv2.filter2D(src=img,ddepth=-1,kernel=kernel)#-1 says that depth of output image to be equal to input image
+c = -1
+g = img + c*LaplacianImage
+gClip = np.clip(g, 0, 255)#the g image is clipped to 0 if pixel value is >0 and 255 if >255
+cv2.imshow('enhanced_img',gClip)
