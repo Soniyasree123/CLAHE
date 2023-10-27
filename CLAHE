@@ -1,0 +1,11 @@
+import cv2
+import matplotlib.pyplot as plt
+img = cv2.imread("D:\IITH/Necun\Opencv\INPUTS\c-sc.png",0)
+clahe=cv2.createCLAHE(clipLimit=2.0,tileGridSize=(5,5))#img is divide into tiles , excess is removed i.e if above cliplimit
+clahe_img=clahe.apply(img)
+threshold_val,threshold_array=cv2.threshold(clahe_img,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)#auto segmentation
+cv2.imshow('original_img',img)
+cv2.imshow('clahe_img',clahe_img)
+cv2.imshow('Threshold_img',threshold_array)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
